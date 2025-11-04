@@ -1,0 +1,34 @@
+.wx-folder.wx-NYfhvGIt {
+  display: flex;
+  align-items: center;
+  cursor: default;
+  letter-spacing: 0.2px;
+  width: 100%;
+  height: 32px;
+  vertical-align: top;
+  white-space: nowrap;
+  position: relative;
+}
+
+.wx-selected.wx-NYfhvGIt {
+  background-color: var(--wx-fm-select-background);
+}
+i.wx-NYfhvGIt {
+  font-size: 22px;
+  margin-right: 8px;
+  max-height: 100%;
+  color: var(--wx-color-primary);
+}
+.wx-toggle.wx-NYfhvGIt {
+  cursor: pointer;
+  color: var(--wx-icon-color);
+  font-size: 24px;
+  margin-right: -2px;
+}
+.wx-toggle-placeholder.wx-NYfhvGIt {
+  width: 23px;
+  flex-shrink: 0;
+}
+.wx-name.wx-NYfhvGIt {
+  padding-right: 8px;
+}

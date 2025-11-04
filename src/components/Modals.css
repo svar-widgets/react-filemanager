@@ -1,0 +1,10 @@
+.wx-list.wx-gq7BMzEP {
+  text-align: left;
+  padding-left: 20px;
+  max-height: 300px;
+  overflow: auto;
+}
+
+.wx-list li.wx-gq7BMzEP {
+  font-weight: var(--wx-font-weight-md);
+}

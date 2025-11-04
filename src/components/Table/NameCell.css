@@ -1,0 +1,25 @@
+.wx-name-cell.wx-qgAqG6sL {
+  padding: 0 4px;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  overflow: hidden;
+  flex-shrink: 0;
+  text-overflow: clip;
+}
+.wx-qgAqG6sL i,
+.wx-icon.wx-qgAqG6sL {
+  margin-right: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.wx-qgAqG6sL i {
+  font-size: 24px;
+  color: var(--wx-color-primary);
+}
+.wx-name.wx-qgAqG6sL {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

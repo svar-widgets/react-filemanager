@@ -1,0 +1,11 @@
+.demo.wx-2AsPDt7h {
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.bar.wx-2AsPDt7h {
+  height: 50px;
+  padding: 5px 10px;
+}

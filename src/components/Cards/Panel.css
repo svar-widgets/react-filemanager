@@ -1,0 +1,27 @@
+.wx-cards.wx-iyjASZCY {
+  flex-grow: 1;
+  flex-wrap: wrap;
+  height: 100%;
+  border-top: none;
+  padding: 30px 20px 10px;
+  display: flex;
+  align-items: flex-start;
+  overflow-y: auto;
+  align-content: flex-start;
+  outline: none;
+}
+.wx-cards.wx-has-back-link.wx-iyjASZCY {
+  padding: 0 20px 10px;
+}
+.wx-not-found-text.wx-iyjASZCY {
+  text-align: center;
+  color: var(--wx-color-font-alt);
+}
+.wx-not-found.wx-iyjASZCY {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  height: 100%;
+}

@@ -1,0 +1,11 @@
+.demo.wx-DZXRPbpa {
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.bar.wx-DZXRPbpa {
+  height: 50px;
+  padding: 5px;
+}

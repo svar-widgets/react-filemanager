@@ -1,0 +1,66 @@
+.wx-flex.wx-RJbNonjJ {
+  display: flex;
+  width: 100%;
+}
+.wx-filemanager.wx-RJbNonjJ {
+  max-width: 100vw;
+  max-height: 100vh;
+  overflow: hidden;
+  background-color: var(--wx-fm-background);
+  flex-direction: column;
+  height: 100%;
+}
+.wx-content.wx-RJbNonjJ {
+  flex-grow: 1;
+  display: flex;
+  flex-shrink: 0;
+}
+.wx-content-item-fit {
+  width: 100%;
+  padding: 0 10px 10px;
+}
+.wx-content-item {
+  width: 67%;
+  padding: 0 10px 10px;
+}
+.wx-content-wrapper.wx-RJbNonjJ {
+  margin-top: 10px;
+  max-width: 100%;
+  max-height: 100%;
+  position: relative;
+}
+.wx-info.wx-RJbNonjJ {
+  width: 38%;
+}
+.wx-sidebar.wx-RJbNonjJ {
+  flex: 0 0 auto;
+  width: 238px;
+  padding: 0 10px 10px;
+  height: 100%;
+}
+.wx-sidebar-narrow {
+  position: absolute !important;
+  z-index: 5;
+  left: -300px;
+  transition-duration: 0.6s;
+}
+.wx-sidebar-visible {
+  left: 0;
+}
+.wx-info-narrow.wx-RJbNonjJ {
+  width: 100%;
+  height: 100%;
+  padding-top: 10px;
+}
+.wx-filemanager.wx-RJbNonjJ > div[data-menu-ignore='true'] {
+  height: calc(100% - var(--wx-fm-toolbar-height));
+  width: 100%;
+}
+.wx-filemanager.wx-RJbNonjJ > span[data-menu-ignore='true'],
+.wx-filemanager.wx-RJbNonjJ
+  > span[data-menu-ignore='true']
+  > span[data-menu-ignore='true'] {
+  height: 100%;
+  width: 100%;
+  display: flex;
+}

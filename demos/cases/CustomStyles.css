@@ -1,0 +1,13 @@
+.filemanager.wx-azWmsyFW {
+  height: 100%;
+  width: 100%;
+  --wx-color-primary: rgb(11, 162, 208);
+  --wx-fm-background: rgb(207, 209, 221);
+  --wx-fm-select-color: rgb(235, 235, 255);
+  --wx-table-select-background: rgba(33, 195, 255, 0.1);
+  --wx-table-select-focus-background: rgba(33, 195, 255, 0.1);
+}
+
+.filemanager.wx-azWmsyFW > .wx-filemanager .wx-cards .wx-back {
+  color: rgba(74, 93, 237);
+}

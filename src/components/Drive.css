@@ -1,0 +1,29 @@
+.wx-drive.wx-DetSyKGG {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 8px;
+}
+.wx-progress.wx-DetSyKGG {
+  width: 100%;
+  height: 8px;
+  border-radius: 20px;
+  background-color: var(--wx-button-background);
+  border: none;
+}
+.wx-progress.wx-DetSyKGG[value]::-webkit-progress-bar {
+  border-radius: 20px;
+  background-color: var(--wx-fm-progress-bar-color);
+}
+.wx-progress.wx-DetSyKGG[value]::-moz-progress-bar {
+  background-color: var(--wx-color-primary);
+  border-radius: 10px;
+}
+
+.wx-progress.wx-DetSyKGG[value]::-webkit-progress-value {
+  background-color: var(--wx-color-primary);
+  border-radius: 10px;
+}
+.wx-drive.wx-DetSyKGG p {
+  margin: 20px 0;
+}
