@@ -1,6 +1,6 @@
 {
   "name": "@svar-ui/react-filemanager",
-  "version": "2.3.1",
+  "version": "2.3.2",
   "description": "SVAR React File Manager — file explorer component for React.",
   "productTag": "filemanager",
   "type": "module",

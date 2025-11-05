@@ -46,7 +46,7 @@
   height: calc(100% - 48px);
 }
 
-.wx-preview.wx-O0BTtRrH .wx-img-wrapper.wx-O0BTtRrH img.wx-O0BTtRrH {
+.wx-preview.wx-O0BTtRrH .wx-img-wrapper.wx-O0BTtRrH img {
   width: 100%;
   height: 100%;
   object-fit: cover;
