@@ -14,7 +14,7 @@ function Panel() {
   const [panels] = useStoreWithCounter(api, "panels");
   const activePanel = useStore(api, "activePanel");
   const mode = useStore(api, "mode");
-  
+
   const files = panels[activePanel]._files;
   const selected = panels[activePanel].selected;
   const path = panels[activePanel].path;
@@ -111,13 +111,13 @@ function Panel() {
     () =>
       path !== "/"
         ? [
-            {
-              id: "/wx-filemanager-parent-link",
-              name: _("Back to parent folder"),
-              navigation: selectNavigation,
-            },
-            ...files,
-          ]
+          {
+            id: "/wx-filemanager-parent-link",
+            name: _("Back to parent folder"),
+            navigation: selectNavigation,
+          },
+          ...files,
+        ]
         : files,
     [path, _, selectNavigation, files]
   );
@@ -126,13 +126,15 @@ function Panel() {
   // delegate click has not cleaning, so need to ensure that it is initialized only once
   const clickHandlers = useRef();
   useEffect(() => {
-    if (!clickHandlers.current) {
-      clickHandlers.current = { click, dblclick: ev => clickHandlers.current._dblclick(ev), _dblclick: dblclick, context: applySelection };
-      delegateClick(cardsRef.current, clickHandlers.current);
-    } else {
-      clickHandlers.current.click = click;
-      clickHandlers.current._dblclick = dblclick;
-      clickHandlers.current.context = applySelection;
+    if (cardsRef.current) {
+      if (!clickHandlers.current) {
+        clickHandlers.current = { click, dblclick: ev => clickHandlers.current._dblclick(ev), _dblclick: dblclick, context: applySelection };
+        delegateClick(cardsRef.current, clickHandlers.current);
+      } else {
+        clickHandlers.current.click = click;
+        clickHandlers.current._dblclick = dblclick;
+        clickHandlers.current.context = applySelection;
+      }
     }
   }, [click, dblclick, applySelection]);
 
