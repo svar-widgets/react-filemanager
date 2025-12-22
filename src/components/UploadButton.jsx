@@ -3,7 +3,6 @@ import { context } from "@svar-ui/react-core";
 import { uploaderContext } from '../context';
 import "./UploadButton.css";
 
-const apiKey = "uploaderApi";
 function UploadButton({ option }) {
   const i18n = useContext(context.i18n);
   const _ = i18n.getGroup("filemanager");

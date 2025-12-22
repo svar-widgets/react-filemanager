@@ -1,6 +1,6 @@
 {
   "name": "@svar-ui/react-filemanager",
-  "version": "2.3.3",
+  "version": "2.4.0",
   "description": "SVAR React File Manager — file explorer component for React.",
   "productTag": "filemanager",
   "type": "module",
@@ -55,16 +55,16 @@
     "react-dom": ">=18"
   },
   "dependencies": {
-    "@svar-ui/filemanager-data-provider": "2.3.0",
-    "@svar-ui/filemanager-locales": "2.3.0",
-    "@svar-ui/filemanager-store": "2.3.0",
-    "@svar-ui/lib-dom": "0.10.0",
-    "@svar-ui/lib-react": "1.1.1",
+    "@svar-ui/filemanager-data-provider": "2.4.0",
+    "@svar-ui/filemanager-locales": "2.4.0",
+    "@svar-ui/filemanager-store": "2.4.0",
+    "@svar-ui/lib-dom": "0.11.1",
+    "@svar-ui/lib-react": "1.2.2",
     "@svar-ui/lib-state": "1.9.6",
-    "@svar-ui/react-core": "2.3.1",
-    "@svar-ui/react-menu": "2.3.1",
-    "@svar-ui/react-grid": "2.3.2",
-    "@svar-ui/react-uploader": "2.3.2"
+    "@svar-ui/react-core": "2.4.0",
+    "@svar-ui/react-menu": "2.4.0",
+    "@svar-ui/react-grid": "2.4.0",
+    "@svar-ui/react-uploader": "2.4.0"
   },
   "homepage": "https://svar.dev/react/filemanager/",
   "repository": {

@@ -2,7 +2,7 @@ import { useContext, useEffect, useMemo, useRef } from "react";
 import { formatSize } from "@svar-ui/filemanager-store";
 import { delegateClick, dateToString } from "@svar-ui/lib-dom";
 import { Grid } from "@svar-ui/react-grid";
-import { useStore, useStoreWithCounter } from "@svar-ui/lib-react";
+import { useStoreWithCounter } from "@svar-ui/lib-react";
 import { context } from "@svar-ui/react-core"
 import { storeContext } from '../../context';
 
@@ -21,7 +21,7 @@ function View({ panel, active = false, onClick, onContextMenu }) {
     [locale]
   );
 
-  const [panels, panelsCounter] = useStoreWithCounter(api, "panels");
+  const [panels] = useStoreWithCounter(api, "panels");
   
   const selection = panels[panel].selected;
   const path = panels[panel].path;

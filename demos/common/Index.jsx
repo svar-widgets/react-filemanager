@@ -1,5 +1,6 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useCallback } from 'react';
 import { HashRouter, NavLink, useNavigate } from 'react-router-dom';
+import { Willow } from '@svar-ui/react-core';
 
 import Router from './Router';
 import { links } from '../routes';
@@ -25,20 +26,13 @@ function DemoExplorerContent({
     productTag +
     '/tree/main/demos/cases/';
 
-  useEffect(() => {
-    document.body.className = `wx-willow-theme`;
-  }, []);
-
   const handleRouteChange = useCallback(
     (path) => {
       const parts = path.split('/');
       const page = parts[1];
       const newSkin = parts[2];
-
-      if (newSkin && newSkin !== skin) {
-        setSkin(newSkin);
-      }
-
+      setSkin(newSkin);
+      
       const targetPage = `/${page}/:skin`;
       const matched = links.find((a) => a[0] === targetPage);
       if (matched) {
@@ -47,7 +41,7 @@ function DemoExplorerContent({
         setGithubLink(`${baseLink}${name}.jsx`);
       }
     },
-    [skin],
+    [],
   );
 
   const handleSkinChange = ({ value }) => {
@@ -55,7 +49,7 @@ function DemoExplorerContent({
     const currentPath = window.location.hash.slice(1);
     const parts = currentPath.split('/');
     if (parts[1]) {
-      navigate(`/${parts[1]}/${value}`);
+        navigate(`/${parts[1]}/${value}`);
     }
   };
 
@@ -63,8 +57,10 @@ function DemoExplorerContent({
     setShow(!show);
   };
 
+  const SkinComponent = skins.find((s) => s.id === skin).Component;
+
   return (
-    <div className={`wx-demos layout ${show ? 'active' : ''}`}>
+    <div className={`wx-demos wx-willow-theme layout ${show ? 'active' : ''}`}>
       <div
         className={`wx-demos sidebar ${show ? 'active' : ''}`}
         role="tabpanel"
@@ -81,7 +77,7 @@ function DemoExplorerContent({
               </a>
               <div className="wx-demos separator"></div>
               <a
-                href={`https://svar.dev/react/${productTag}/`}
+                href={`https://svar.dev/react/filemanager/`}
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -159,7 +155,9 @@ function DemoExplorerContent({
             data-wx-portal-root="true"
           >
             <Globals>
-              <Router skin={skin} onRouteChange={handleRouteChange} />
+              <SkinComponent>
+                <Router skin={skin} onRouteChange={handleRouteChange} />
+              </SkinComponent>
             </Globals>
           </div>
         </div>
@@ -169,15 +167,12 @@ function DemoExplorerContent({
 }
 
 export default function DemoExplorer(props) {
-  const skins = props.skins;
   return (
     <>
-      {skins.map((skin) => (
-        <skin.Component key={skin.id} />
-      ))}
-      <HashRouter>
-        <DemoExplorerContent {...props} />
-      </HashRouter>
+        <Willow />
+        <HashRouter>
+          <DemoExplorerContent {...props} />
+        </HashRouter>
     </>
   );
 }

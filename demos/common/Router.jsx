@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import {
   Routes,
   Route,
@@ -12,7 +12,9 @@ export default function Router({ onRouteChange }) {
   const location = useLocation();
   const navigate = useNavigate();
 
+  const lastRef = useRef(location.pathname);
   useEffect(() => {
+    if (lastRef.current === location.pathname) return;
     if (location.pathname === '/') {
       navigate('/base/willow', { replace: true });
     } else {
