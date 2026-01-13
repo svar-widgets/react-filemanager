@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { Filemanager } from "../../src";
 
 function BackendFilter() {
-  const server = "https://master--svar-filemanager-go--dev.webix.io";
+  const server = "https://filemanager-backend.svar.dev";
 
   function previewURL(file, width, height) {
     const ext = file.ext;

@@ -3,7 +3,7 @@ import { RestDataProvider } from "@svar-ui/filemanager-data-provider";
 import { formatSize } from "@svar-ui/filemanager-store";
 import { Filemanager } from "../../src";
 
-const server = "https://master--svar-filemanager-go--dev.webix.io";
+const server = "https://filemanager-backend.svar.dev";
 
 export default function DataProvider() {
   const restProviderRef = useRef(null);
