@@ -66,6 +66,7 @@ export default defineConfig(({ command, mode }) => {
   return {
     plugins: [react()],
     build: {
+      sourcemap: true,
       lib: {
         //eslint-disable-next-line no-undef
         entry: resolve(__dirname, 'src/index.js'),
