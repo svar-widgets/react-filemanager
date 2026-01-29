@@ -18,7 +18,7 @@ import Modals from "./Modals.jsx";
 import { whitelist } from "../icons";
 import { storeContext as StoreContext } from '../context';
 
-// svelte store factory (used by DataStore)
+// store factory (used by DataStore)
 import { writable } from '@svar-ui/lib-react';
 
 // ui

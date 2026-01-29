@@ -1,5 +1,5 @@
 import type { FC, ReactNode } from 'react';
-import type { IMenuOption } from '@svar-ui/svelte-menu';
+import type { IMenuOption } from '@svar-ui/react-menu';
 
 import type {
   TMethodsConfig,
@@ -19,7 +19,7 @@ export interface IFileMenuOption extends IMenuOption {
 export declare const Filemanager: FC<
   {
     readonly?: boolean;
-    menuOptions?: () => (
+    menuOptions?: (
       mode: TContextMenuType,
       item?: IParsedEntity,
     ) => IFileMenuOption[];
