@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo, useContext, useRef } from "react";
 import { context } from "@svar-ui/react-core";
-import { delegateClick } from "@svar-ui/lib-dom";
+import { delegateClick, setID } from "@svar-ui/lib-dom";
 import { getSelectionOnNavigation } from "@svar-ui/filemanager-store";
 import Icon from "./ui/Icon.jsx";
 import { storeContext } from '../context';
@@ -61,7 +61,7 @@ export default function Breadcrumbs({ panel }) {
       {crumbs.map((crumb, i) => (
         <React.Fragment key={i}>
           {i ? <Icon name="angle-right" /> : null}
-          <div className="wx-SNY5LTYx wx-item" data-id={crumb.id} data-menu-ignore="true">
+          <div className="wx-SNY5LTYx wx-item" data-id={setID(crumb.id)} data-menu-ignore="true">
             {crumb.id == "/" ? _(crumb.name) : crumb.name}
           </div>
         </React.Fragment>

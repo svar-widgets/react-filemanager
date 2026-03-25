@@ -1,6 +1,6 @@
 import { useContext, useEffect, useMemo, useRef } from "react";
 import { formatSize } from "@svar-ui/filemanager-store";
-import { delegateClick, dateToString } from "@svar-ui/lib-dom";
+import { delegateClick, dateToString, setID } from "@svar-ui/lib-dom";
 import { Grid } from "@svar-ui/react-grid";
 import { useStoreWithCounter } from "@svar-ui/lib-react";
 import { context } from "@svar-ui/react-core"
@@ -198,7 +198,7 @@ function View({ panel, active = false, onClick, onContextMenu }) {
     <div onClick={onClick} onContextMenu={onContextMenu} className="wx-SSaVhET7 wx-wrapper">
       <Breadcrumbs panel={panel} />
       <div
-        data-id="body"
+        data-id={setID("body")}
         className={`wx-SSaVhET7 wx-list ${active ? "wx-active" : ""}`}
         ref={listRef}
       >

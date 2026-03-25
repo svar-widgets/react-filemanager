@@ -140,7 +140,7 @@ function Info({ narrowMode, extraInfo }) {
 
   const downloadFile = useCallback(() => {
     api.exec("download-file", {
-      id: items[0],
+      id: items[0].id,
     });
   }, [api, items]);
 

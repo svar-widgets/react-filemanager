@@ -21,6 +21,8 @@
 }
 .wx-content-item {
   width: 67%;
+  min-width: 0;
+  overflow: hidden;
   padding: 0 10px 10px;
 }
 .wx-content-wrapper.wx-RJbNonjJ {
@@ -53,13 +55,14 @@
   padding-top: 10px;
 }
 .wx-filemanager.wx-RJbNonjJ > div[data-menu-ignore='true'] {
-  height: calc(100% - var(--wx-fm-toolbar-height));
+  height: 100%;
   width: 100%;
 }
 .wx-filemanager.wx-RJbNonjJ > span[data-menu-ignore='true'],
 .wx-filemanager.wx-RJbNonjJ
   > span[data-menu-ignore='true']
   > span[data-menu-ignore='true'] {
+  min-height: 0;
   height: 100%;
   width: 100%;
   display: flex;

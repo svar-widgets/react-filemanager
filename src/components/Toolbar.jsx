@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { Segmented, TwoState } from "@svar-ui/react-core";
 import { context } from "@svar-ui/react-core";
+import { setID } from "@svar-ui/lib-dom";
 import Search from "./ui/Search.jsx";
 import Icon from "./ui/Icon.jsx";
 import { storeContext } from '../context';
@@ -41,7 +42,7 @@ export default function Toolbar({ narrowMode = false, onShowTree }) {
         {!narrowMode ? (
           <div className="wx-5PZQQztG wx-name">{_("Files")}</div>
         ) : !(mode === "panels" || mode === "search") ? (
-          <div className="wx-5PZQQztG wx-sidebar-icon" data-id="toggle-tree">
+          <div className="wx-5PZQQztG wx-sidebar-icon" data-id={setID("toggle-tree")}>
             <Icon onClick={() => onShowTree && onShowTree()} name="subtask" />
           </div>
         ) : null}

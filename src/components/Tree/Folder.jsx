@@ -1,4 +1,5 @@
 import { useMemo, useContext } from "react";
+import { setID } from "@svar-ui/lib-dom";
 import { context } from "@svar-ui/react-core";
 import { storeContext } from '../../context';
 import { useStore, useStoreWithCounter } from "@svar-ui/lib-react";
@@ -31,7 +32,7 @@ function Folder({ folderIcon = false, folder = {} }) {
   return (
     <>
       <li
-        data-id={folder.id}
+        data-id={setID(folder.id)}
         className={`wx-NYfhvGIt wx-folder${path === folder.id ? " wx-selected" : ""}`}
         style={{ paddingLeft: `${padding}px` }}
       >

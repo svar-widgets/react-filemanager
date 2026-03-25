@@ -1,6 +1,6 @@
 import { useCallback, useContext, useEffect, useMemo, useRef } from "react";
 import { context } from "@svar-ui/react-core";
-import { delegateClick } from "@svar-ui/lib-dom";
+import { delegateClick, setID } from "@svar-ui/lib-dom";
 import Item from "./Item.jsx";
 import { storeContext } from '../../context';
 import { useStore, useStoreWithCounter } from "@svar-ui/lib-react";
@@ -150,7 +150,7 @@ function Panel() {
     <div
       tabIndex={0}
       className={"wx-iyjASZCY " + ("wx-cards" + (path !== "/" && mode !== "search" ? " wx-has-back-link" : ""))}
-      data-id={"body"}
+      data-id={setID("body")}
       ref={cardsRef}
     >
       {renderedFiles.map((child) => (

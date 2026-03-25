@@ -1,5 +1,5 @@
 .wx-toolbar.wx-5PZQQztG {
-  flex: 0 0 var(--wx-fm-toolbar-height);
+  height: var(--wx-fm-toolbar-height);
   display: flex;
   justify-content: space-between;
   align-items: center;

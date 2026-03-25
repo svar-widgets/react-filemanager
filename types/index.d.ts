@@ -1,4 +1,9 @@
-import type { FC, ReactNode } from 'react';
+import type {
+  FC,
+  ReactNode,
+  ForwardRefExoticComponent,
+  RefAttributes,
+} from 'react';
 import type { IMenuOption } from '@svar-ui/react-menu';
 
 import type {
@@ -16,7 +21,11 @@ export interface IFileMenuOption extends IMenuOption {
   hotkey: string;
 }
 
-export declare const Filemanager: FC<
+export type FilePreview = IParsedEntity & {
+  type: 'file' | 'folder' | 'search' | 'multiple' | 'none';
+};
+
+export declare const Filemanager: ForwardRefExoticComponent<
   {
     readonly?: boolean;
     menuOptions?: (
@@ -28,13 +37,14 @@ export declare const Filemanager: FC<
     ) => Promise<IExtraInfo> | IExtraInfo | null;
     icons?: (file: IParsedEntity, size: 'big' | 'small') => string;
     previews?: (
-      file: IParsedEntity | { type: 'search' | 'multiple' | 'none' },
+      file: FilePreview,
       width: number,
       height: number,
     ) => string | null;
     init?: (api: IApi) => void;
   } & IConfig &
-    FilemanagerActions<TMethodsConfig>
+    FilemanagerActions<TMethodsConfig> &
+    RefAttributes<IApi>
 >;
 
 export declare const Material: FC<{

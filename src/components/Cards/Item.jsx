@@ -1,4 +1,5 @@
 import { useContext, useMemo } from "react";
+import { setID } from "@svar-ui/lib-dom";
 import { context } from "@svar-ui/react-core";
 import { storeContext } from '../../context';
 import { useStore, useStoreWithCounter } from "@svar-ui/lib-react";
@@ -20,12 +21,12 @@ export default function Item({ item }) {
 
   return (
     <>
-      {item.id == "/wx-filemanager-parent-link" ? (
+      {item.id === "/wx-filemanager-parent-link" ? (
         mode !== "search" ? (
           <div className="wx-GAOa4kDV wx-back-item">
             <div
               className={`wx-GAOa4kDV wx-back ${item.navigation ? "wx-selected" : ""}`}
-              data-id="/wx-filemanager-parent-link"
+              data-id={setID("/wx-filemanager-parent-link")}
             >
               <i className="wx-GAOa4kDV wxi-arrow-left"></i>
               <span>{_("Back to parent folder")}</span>
@@ -35,7 +36,7 @@ export default function Item({ item }) {
       ) : (
         <div
           className={`wx-GAOa4kDV wx-item ${selection?.length && selection.indexOf(item.id) >= 0 ? "wx-selected" : ""}`}
-          data-id={item.id}
+          data-id={setID(item.id)}
         >
           {preview ? (
             <div className="wx-GAOa4kDV wx-preview wx-file-preview">
@@ -57,7 +58,7 @@ export default function Item({ item }) {
                 <span className="wx-GAOa4kDV wx-type">{_("Folder")}</span>
                 <span className="wx-GAOa4kDV wx-name">{item.name}</span>
               </div>
-              <div data-action-id={item.id} className="wx-GAOa4kDV wx-more">
+              <div data-action-id={setID(item.id)} className="wx-GAOa4kDV wx-more">
                 <i className="wx-GAOa4kDV wxi-dots-v"></i>
               </div>
             </div>
@@ -66,7 +67,7 @@ export default function Item({ item }) {
               <div className="wx-GAOa4kDV wx-file-name">
                 <span className="wx-GAOa4kDV wx-name">{item.name}</span>
               </div>
-              <div data-action-id={item.id} className="wx-GAOa4kDV wx-more">
+              <div data-action-id={setID(item.id)} className="wx-GAOa4kDV wx-more">
                 <i className="wx-GAOa4kDV wxi-dots-v"></i>
               </div>
             </div>

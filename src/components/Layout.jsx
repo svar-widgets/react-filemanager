@@ -1,5 +1,5 @@
 import { useCallback, useContext, useEffect, useMemo, useRef, useState } from "react";
-import { clickOutside, locateID } from "@svar-ui/lib-dom";
+import { clickOutside, locateID, setID } from "@svar-ui/lib-dom";
 import { ActionMenu, ContextMenu } from "@svar-ui/react-menu";
 import { Uploader, useUploaderState } from "@svar-ui/react-uploader";
 import { hotkeys } from "@svar-ui/filemanager-store";
@@ -143,7 +143,6 @@ function Layout({ readonly = false, menuOptions, extraInfo }) {
               ids: copyRef.current.ids,
               target: contextArg?.type === "folder" ? contextArg.id : path,
             });
-            copyRef.current = null;
           }
           break;
         case "rename":
@@ -307,7 +306,7 @@ function Layout({ readonly = false, menuOptions, extraInfo }) {
                       >
                         <div
                           className={`wx-RJbNonjJ wx-content-item${preview ? "" : "-fit"}`}
-                          data-id="body"
+                          data-id={setID("body")}
                         >
                           {mode === "table" ? (
                             <TableView panel={activePanel} />

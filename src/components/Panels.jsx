@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import { setID } from "@svar-ui/lib-dom";
 import TableView from "./Table/View.jsx";
 import { storeContext } from '../context';
 import { useStore } from "@svar-ui/lib-react";
@@ -13,7 +14,7 @@ export default function Panels() {
   }
 
   return (
-    <div className="wx-L55BfJa2 wx-panels" data-id="body">
+    <div className="wx-L55BfJa2 wx-panels" data-id={setID("body")}>
       <div className="wx-L55BfJa2 wx-item" data-panel={0}>
         <TableView
           panel={0}
