@@ -1,3 +1,16 @@
+## 2.6.0
+
+### New features
+
+- Tooltips for cards view
+
+### Fixes
+
+- Incorrect text label for bytes
+- Incorrect types in Filemanager store
+- Reactive data updates may fail if selected item is removed
+- Missing space in search string
+
 ## 2.5.0
 
 ### Fixes

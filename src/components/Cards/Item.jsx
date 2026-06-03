@@ -5,6 +5,22 @@ import { storeContext } from '../../context';
 import { useStore, useStoreWithCounter } from "@svar-ui/lib-react";
 import "./Item.css";
 
+function splitFileName(name) {
+  const MAX_TAIL_LENGTH = 10;
+  const NO_EXT_TAIL_LENGTH = 5;
+
+  const lastDotIndex = name.lastIndexOf(".");
+  const hasExtension = lastDotIndex > 0 && lastDotIndex < name.length - 1;
+  const tailLength = hasExtension
+    ? Math.min(MAX_TAIL_LENGTH, name.length - lastDotIndex)
+    : Math.min(NO_EXT_TAIL_LENGTH, name.length);
+
+  const nameStart = name.slice(0, -tailLength);
+  const nameTail = name.slice(-tailLength);
+
+  return [nameStart, nameTail];
+}
+
 export default function Item({ item }) {
   const api = useContext(storeContext);
   const _ = useContext(context.i18n).getGroup("filemanager");
@@ -18,6 +34,7 @@ export default function Item({ item }) {
 
   const preview = useMemo(() => templates.preview(item, 214, 163), [templates, item]);
   const icon = useMemo(() => templates.icon(item, "big"), [templates, item]);
+  const [nameStart, nameTail] = useMemo(() => splitFileName(item.name), [item.name]);
 
   return (
     <>
@@ -56,7 +73,9 @@ export default function Item({ item }) {
             <div className="wx-GAOa4kDV wx-info">
               <div className="wx-GAOa4kDV wx-folder-name">
                 <span className="wx-GAOa4kDV wx-type">{_("Folder")}</span>
-                <span className="wx-GAOa4kDV wx-name">{item.name}</span>
+                <span className="wx-GAOa4kDV wx-name">
+                  <span>{nameStart}</span><span>{nameTail}</span>
+                </span>
               </div>
               <div data-action-id={setID(item.id)} className="wx-GAOa4kDV wx-more">
                 <i className="wx-GAOa4kDV wxi-dots-v"></i>
@@ -65,7 +84,9 @@ export default function Item({ item }) {
           ) : (
             <div className="wx-GAOa4kDV wx-info">
               <div className="wx-GAOa4kDV wx-file-name">
-                <span className="wx-GAOa4kDV wx-name">{item.name}</span>
+                <span className="wx-GAOa4kDV wx-name">
+                  <span>{nameStart}</span><span>{nameTail}</span>
+                </span>
               </div>
               <div data-action-id={setID(item.id)} className="wx-GAOa4kDV wx-more">
                 <i className="wx-GAOa4kDV wxi-dots-v"></i>

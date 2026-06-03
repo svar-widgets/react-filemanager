@@ -45,6 +45,10 @@ function DemoExplorerContent({
     }
   }, [isMobileView, title]);
 
+  useEffect(() => {
+    document.body.className = `wx-${skin}-theme`;
+  }, [skin]);
+
   const handleRouteChange = useCallback(
     (path) => {
       const parts = path.split('/');
@@ -80,7 +84,7 @@ function DemoExplorerContent({
 
   return (
     <div
-      className={`wx-demos wx-willow-theme layout ${show ? 'active' : ''}${isMobileView ? ' narrow' : ''}`}
+      className={`wx-demos wx-${skin}-theme layout ${show ? 'active' : ''}${isMobileView ? ' narrow' : ''}`}
     >
       <div
         className={`wx-demos sidebar ${show ? 'active' : ''}`}

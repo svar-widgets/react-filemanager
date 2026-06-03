@@ -3,22 +3,6 @@ import { Filemanager } from "../../src/";
 import { formatSize } from "@svar-ui/filemanager-store";
 
 function ExtraInfo() {
-  const requestInfo = (file) => {
-    if (file.type === "folder") {
-      const { size, folders, files } = getSizeAndCount(file);
-
-      let getString = (number, name) =>
-        number ? `${number} ${name + (number === 1 ? "" : "s")}` : "";
-
-      const foldersStr = getString(folders, "folder");
-
-      return {
-        Size: formatSize(size),
-        Count: (foldersStr ? `${foldersStr}, ` : "") + getString(files, "file"),
-      };
-    }
-  };
-
   const getSizeAndCount = (file) => {
     const dimensions = {
       size: 0,
@@ -37,6 +21,22 @@ function ExtraInfo() {
     });
 
     return dimensions;
+  };
+
+  const requestInfo = (file) => {
+    if (file.type === "folder") {
+      const { size, folders, files } = getSizeAndCount(file);
+
+      let getString = (number, name) =>
+        number ? `${number} ${name + (number === 1 ? "" : "s")}` : "";
+
+      const foldersStr = getString(folders, "folder");
+
+      return {
+        Size: formatSize(size),
+        Count: (foldersStr ? `${foldersStr}, ` : "") + getString(files, "file"),
+      };
+    }
   };
 
   return (

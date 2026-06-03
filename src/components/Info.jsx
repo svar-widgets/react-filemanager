@@ -136,8 +136,6 @@ function Info({ narrowMode, extraInfo }) {
     };
   }, [items, found, preview, icon, _, getItemType, getTotalCount]);
 
-  const name = basic.name;
-
   const downloadFile = useCallback(() => {
     api.exec("download-file", {
       id: items[0].id,
@@ -179,7 +177,7 @@ function Info({ narrowMode, extraInfo }) {
         <>
           <div className="wx-O0BTtRrH wx-preview">
             <div className="wx-O0BTtRrH wx-toolbar">
-              <div className="wx-O0BTtRrH wx-name">{name}</div>
+              <div className="wx-O0BTtRrH wx-name">{basic.name}</div>
               <div className="wx-O0BTtRrH wx-icons">
                 {basic.showDownloadIcon ? (
                   <Icon name="download" onClick={downloadFile} />
@@ -251,7 +249,7 @@ function Info({ narrowMode, extraInfo }) {
       ) : (
         <div className="wx-O0BTtRrH wx-no-info-panel">
           <div className="wx-O0BTtRrH wx-toolbar">
-            <div className="wx-O0BTtRrH wx-name">{name}</div>
+            <div className="wx-O0BTtRrH wx-name">{basic.name}</div>
             <div className="wx-O0BTtRrH wx-icons">
               {narrowMode ? <Icon name="close" onClick={closePreview} /> : null}
             </div>

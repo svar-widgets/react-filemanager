@@ -31,7 +31,7 @@ export default function SearchView() {
           <Icon name="angle-left" onClick={clearSearch} />
         </div>
         <div className="wx-GDJvtROw wx-text">
-          {_("Search results in")}
+          {_("Search results in")}{" "}
           {Array.isArray(crumbs) &&
             crumbs.map((crumb, i) => (
               <Fragment key={i}>

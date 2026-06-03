@@ -82,12 +82,21 @@
   text-overflow: ellipsis;
 }
 .wx-name.wx-GAOa4kDV {
-  display: inline-block;
+  display: flex;
+  min-width: 0;
   font-size: 14px;
   font-weight: var(--wx-font-weight-md);
   overflow: hidden;
+}
+.wx-name.wx-GAOa4kDV > span:first-child {
+  overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  min-width: 0;
+}
+.wx-name.wx-GAOa4kDV > span:last-child {
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 .wx-back-item.wx-GAOa4kDV {
   width: 100%;

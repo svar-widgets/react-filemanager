@@ -3,8 +3,10 @@ import type {
   ReactNode,
   ForwardRefExoticComponent,
   RefAttributes,
+  ComponentProps,
 } from 'react';
 import type { IMenuOption } from '@svar-ui/react-menu';
+import { Tooltip as BaseTooltip } from '@svar-ui/react-core';
 
 import type {
   TMethodsConfig,
@@ -18,10 +20,10 @@ import type {
 export * from '@svar-ui/filemanager-store';
 
 export interface IFileMenuOption extends IMenuOption {
-  hotkey: string;
+  hotkey?: string;
 }
 
-export type FilePreview = IParsedEntity & {
+export type FilePreview = Partial<IParsedEntity> & {
   type: 'file' | 'folder' | 'search' | 'multiple' | 'none';
 };
 
@@ -31,11 +33,13 @@ export declare const Filemanager: ForwardRefExoticComponent<
     menuOptions?: (
       mode: TContextMenuType,
       item?: IParsedEntity,
-    ) => IFileMenuOption[];
+    ) => IFileMenuOption[] | false;
     extraInfo?: (
       file: IParsedEntity,
     ) => Promise<IExtraInfo> | IExtraInfo | null;
-    icons?: (file: IParsedEntity, size: 'big' | 'small') => string;
+    icons?:
+      | ((file: FilePreview, size: 'big' | 'small') => string | false)
+      | 'simple';
     previews?: (
       file: FilePreview,
       width: number,
@@ -45,6 +49,21 @@ export declare const Filemanager: ForwardRefExoticComponent<
   } & IConfig &
     FilemanagerActions<TMethodsConfig> &
     RefAttributes<IApi>
+>;
+
+type TooltipContentData = {
+  file: IParsedEntity;
+};
+
+export declare const Tooltip: FC<
+  Omit<ComponentProps<typeof BaseTooltip>, 'content'> & {
+    api?: IApi;
+    overflow?: boolean;
+    content?: FC<{
+      api: IApi;
+      data: TooltipContentData;
+    }>;
+  }
 >;
 
 export declare const Material: FC<{
