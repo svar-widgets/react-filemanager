@@ -25,9 +25,9 @@
     "build": "vite build",
     "build:demo": "BUILD_DEMOS=true vite build",
     "build:full-css": "BUILD_FULL_CSS=true vite build",
+    "prepare": "npm run build && npm run build:full-css",
     "lint": "eslint . --report-unused-disable-directives",
     "preview": "vite preview",
-    "prepare": "husky",
     "prettier": "prettier --write ./src/ ./demos/"
   },
   "exports": {
@@ -46,9 +46,13 @@
   "sideEffects": false,
   "files": [
     "dist",
+    "dist-full",
     "types",
+    "src",
+    "vite.config.js",
     "package.json",
-    "dist-full/index.css"
+    "README*",
+    "LICENSE*"
   ],
   "peerDependencies": {
     "react": ">=18",
