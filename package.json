@@ -25,6 +25,7 @@
     "build": "vite build",
     "build:demo": "BUILD_DEMOS=true vite build",
     "build:full-css": "BUILD_FULL_CSS=true vite build",
+    "watch": "npm run build -- --watch & BUILD_FULL_CSS=true npm run build -- --watch",
     "prepare": "npm run build && npm run build:full-css",
     "lint": "eslint . --report-unused-disable-directives",
     "preview": "vite preview",
