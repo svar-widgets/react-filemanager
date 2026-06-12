@@ -59,6 +59,7 @@ function View({ panel, active = false, onClick, onContextMenu }) {
 
   const sortClick = useRef(null);
   const resizeClick = useRef(null);
+  const handleSortRef = useRef(null);
 
   const tableSelection = useMemo(
     () =>
@@ -145,10 +146,12 @@ function View({ panel, active = false, onClick, onContextMenu }) {
     });
   }
 
+  handleSortRef.current = handleSort;
+
   function initTable(api) {
     api.intercept("sort-rows", e => {
       sortClick.current = true;
-      handleSort(e);
+      handleSortRef.current(e);
       return false;
     });
 
