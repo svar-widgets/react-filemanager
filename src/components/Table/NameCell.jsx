@@ -22,7 +22,7 @@ function NameCell({ row }) {
       ) : (
         <>
           {icon ? (
-            <img className="wx-qgAqG6sL wx-icon" alt="" src={icon} height="24px" width="24px" />
+            <img className="wx-qgAqG6sL wx-icon" alt="" src={icon} height="24px" width="24px" loading="lazy" />
           ) : (
             <i className={`wx-qgAqG6sL wxi-${row.type}`}></i>
           )}

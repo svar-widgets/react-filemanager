@@ -57,11 +57,11 @@ export default function Item({ item }) {
         >
           {preview ? (
             <div className="wx-GAOa4kDV wx-preview wx-file-preview">
-              <img className="wx-GAOa4kDV wx-card-preview" alt={_("A miniature file preview")} src={preview} />
+              <img className="wx-GAOa4kDV wx-card-preview" alt={_("A miniature file preview")} src={preview} loading="lazy" />
             </div>
           ) : icon ? (
             <div className="wx-GAOa4kDV wx-preview wx-file-icon">
-              <img className="wx-GAOa4kDV wx-card-preview" alt="" src={icon} />
+              <img className="wx-GAOa4kDV wx-card-preview" alt="" src={icon} loading="lazy" />
             </div>
           ) : (
             <div className="wx-GAOa4kDV wx-preview">

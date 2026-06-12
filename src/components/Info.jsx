@@ -187,11 +187,11 @@ function Info({ narrowMode, extraInfo }) {
             </div>
             {basic.previewSrc ? (
               <div className="wx-O0BTtRrH wx-img-wrapper">
-                <img src={basic.previewSrc} alt={_("A miniature file preview")} />
+                <img src={basic.previewSrc} alt={_("A miniature file preview")} loading="lazy" />
               </div>
             ) : basic.iconSrc ? (
               <div className="wx-O0BTtRrH wx-icon-wrapper">
-                <img src={basic.iconSrc} alt={_("A miniature file preview")} />
+                <img src={basic.iconSrc} alt={_("A miniature file preview")} loading="lazy" />
               </div>
             ) : (
               <div className="wx-O0BTtRrH wx-icon-wrapper">
@@ -258,11 +258,11 @@ function Info({ narrowMode, extraInfo }) {
             <div className="wx-O0BTtRrH wx-no-info">
               {basic.previewSrc ? (
                 <div className="wx-O0BTtRrH wx-img-wrapper">
-                  <img src={basic.previewSrc} alt={_("A miniature file preview")} />
+                  <img src={basic.previewSrc} alt={_("A miniature file preview")} loading="lazy" />
                 </div>
               ) : basic.iconSrc ? (
                 <div className="wx-O0BTtRrH wx-icon-wrapper">
-                  <img src={basic.iconSrc} alt={_("A miniature file preview")} />
+                  <img src={basic.iconSrc} alt={_("A miniature file preview")} loading="lazy" />
                 </div>
               ) : (
                 <div className="wx-O0BTtRrH wx-icon-wrapper">
