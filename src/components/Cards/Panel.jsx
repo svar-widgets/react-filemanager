@@ -1,10 +1,22 @@
-import { useCallback, useContext, useEffect, useMemo, useRef } from "react";
+import { useState, useCallback, useContext, useEffect, useMemo, useRef } from "react";
 import { context } from "@svar-ui/react-core";
 import { delegateClick, setID } from "@svar-ui/lib-dom";
 import Item from "./Item.jsx";
 import { storeContext } from '../../context';
 import { useStore, useStoreWithCounter } from "@svar-ui/lib-react";
 import "./Panel.css";
+
+// Must match Item.css: width 210px + margin-right 20px
+const COL_STRIDE = 230;
+// Must match Item.css: height 200px + margin-bottom 20px
+const ROW_HEIGHT = 220;
+// Container left + right padding
+const H_PADDING = 40;
+// Back-link: margin 6px top + 18px line-height + 6px bottom
+const BACK_LINK_HEIGHT = 30;
+const PADDING_TOP = 30;
+const PADDING_BOTTOM = 10;
+const OVERSCAN = 3;
 
 function Panel() {
   const api = useContext(storeContext);
@@ -138,6 +150,99 @@ function Panel() {
     }
   }, [click, dblclick, applySelection]);
 
+  const hasBackLink = path !== "/" && mode !== "search";
+  const paddingStart = hasBackLink ? 0 : PADDING_TOP;
+
+  // layout: container width + scroll position + viewport height
+  const [layout, setLayout] = useState({ width: null, scrollTop: 0, viewportHeight: 600 });
+
+  useEffect(() => {
+    const el = cardsRef.current;
+    if (!el) return;
+
+    setLayout({
+      width: el.getBoundingClientRect().width,
+      scrollTop: el.scrollTop,
+      viewportHeight: el.clientHeight,
+    });
+
+    const onScroll = () => setLayout(l => ({ ...l, scrollTop: el.scrollTop }));
+    el.addEventListener("scroll", onScroll, { passive: true });
+
+    const ro = new ResizeObserver(() => {
+      setLayout(l => ({
+        ...l,
+        width: el.getBoundingClientRect().width,
+        viewportHeight: el.clientHeight,
+      }));
+    });
+    ro.observe(el);
+
+    return () => {
+      el.removeEventListener("scroll", onScroll);
+      ro.disconnect();
+    };
+  }, []);
+
+  const { rows, virtualItems, totalSize } = useMemo(() => {
+    if (!layout.width) return { rows: [], virtualItems: [], totalSize: 0 };
+
+    const colCount = Math.max(1, Math.floor((layout.width - H_PADDING) / COL_STRIDE));
+
+    // bucket flat file list into rows
+    const rows = [];
+    const rowHeights = [];
+    for (let i = 0; i < renderedFiles.length; ) {
+      const item = renderedFiles[i];
+      if (item.id === "/wx-filemanager-parent-link") {
+        rows.push([item]);
+        rowHeights.push(BACK_LINK_HEIGHT);
+        i++;
+      } else {
+        rows.push(renderedFiles.slice(i, i + colCount));
+        rowHeights.push(ROW_HEIGHT);
+        i += colCount;
+      }
+    }
+
+    // cumulative offsets: offsets[i] = y-start of row i
+    const offsets = new Array(rows.length + 1);
+    offsets[0] = paddingStart;
+    for (let i = 0; i < rows.length; i++) {
+      offsets[i + 1] = offsets[i] + rowHeights[i];
+    }
+    const totalSize = (offsets[rows.length] || paddingStart) + PADDING_BOTTOM;
+
+    if (!rows.length) return { rows, virtualItems: [], totalSize };
+
+    // binary search: first row whose bottom > scrollTop
+    const rangeStart = layout.scrollTop;
+    const rangeEnd = layout.scrollTop + layout.viewportHeight;
+    let lo = 0, hi = rows.length - 1;
+    while (lo < hi) {
+      const mid = (lo + hi) >> 1;
+      if (offsets[mid + 1] <= rangeStart) lo = mid + 1;
+      else hi = mid;
+    }
+    const startIdx = Math.max(0, lo - OVERSCAN);
+
+    // binary search: last row whose top < rangeEnd
+    lo = 0; hi = rows.length - 1;
+    while (lo < hi) {
+      const mid = (lo + hi + 1) >> 1;
+      if (offsets[mid] < rangeEnd) lo = mid;
+      else hi = mid - 1;
+    }
+    const endIdx = Math.min(rows.length - 1, lo + OVERSCAN);
+
+    const virtualItems = [];
+    for (let i = startIdx; i <= endIdx; i++) {
+      virtualItems.push({ index: i, start: offsets[i], size: rowHeights[i] });
+    }
+
+    return { rows, virtualItems, totalSize };
+  }, [layout, renderedFiles, paddingStart]);
+
   if (mode == "search" && !renderedFiles.length) {
     return (
       <div className="wx-iyjASZCY wx-not-found">
@@ -149,13 +254,32 @@ function Panel() {
   return (
     <div
       tabIndex={0}
-      className={"wx-iyjASZCY " + ("wx-cards" + (path !== "/" && mode !== "search" ? " wx-has-back-link" : ""))}
+      className={"wx-iyjASZCY " + ("wx-cards" + (hasBackLink ? " wx-has-back-link" : ""))}
       data-id={setID("body")}
       ref={cardsRef}
     >
-      {renderedFiles.map((child) => (
-        <Item item={child} key={child.id} />
-      ))}
+      {layout.width !== null && (
+        <div style={{ height: totalSize, position: "relative" }}>
+          {virtualItems.map(vRow => (
+            <div
+              key={vRow.index}
+              style={{
+                position: "absolute",
+                top: 0,
+                left: 0,
+                width: "100%",
+                height: `${vRow.size}px`,
+                transform: `translateY(${vRow.start}px)`,
+                display: "flex",
+              }}
+            >
+              {rows[vRow.index].map(item => (
+                <Item item={item} key={item.id} />
+              ))}
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
